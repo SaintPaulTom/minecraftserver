@@ -2,8 +2,6 @@
 
 VERSION_MANIFEST='https://piston-meta.mojang.com/mc/game/version_manifest.json'
 JAR_PATH=/opt/minecraft/java/jars
-NORMAL_OUT=/dev/stdout
-ERROR_OUT=/dev/stderr
 
 echo "Downloading Version Manifest from: $VERSION_MANIFEST" > $NORMAL_OUT
 VERSION_MANIFEST_DATA=$(curl -s "$VERSION_MANIFEST")
