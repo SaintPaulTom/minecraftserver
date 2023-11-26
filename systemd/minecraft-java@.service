@@ -4,8 +4,13 @@ After=local-fs.target network.target
 
 [Service]
 WorkingDirectory=/opt/minecraft/java/%i
+PrivateUsers=true
 User=minecraft
 Group=minecraft
+ProtectSystem=full
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
 Environment="MCJMEM=-Xmx4G -Xms4G"
 Type=forking
 Nice=-5
