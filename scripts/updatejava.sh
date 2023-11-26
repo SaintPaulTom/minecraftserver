@@ -3,7 +3,7 @@
 VERSION_MANIFEST='https://piston-meta.mojang.com/mc/game/version_manifest.json'
 JAR_PATH=/opt/minecraft/java/jars
 
-echo "Downloading Version Manifest from: $VERSION_MANIFEST" > $NORMAL_OUT
+echo "Downloading Version Manifest from: $VERSION_MANIFEST" >&1
 VERSION_MANIFEST_DATA=$(curl -s "$VERSION_MANIFEST")
 VERSION_RELEASE=$(echo "$VERSION_MANIFEST_DATA" | jq -r '.latest.release' )
 VERSION_SNAPSHOT=$(echo "$VERSION_MANIFEST_DATA" | jq -r '.latest.snapshot' )
