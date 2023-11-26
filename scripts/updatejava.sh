@@ -12,6 +12,7 @@ SNAPSHOT_JAR=$JAR_PATH/minecraft_server.$VERSION_SNAPSHOT.jar
 echo "Done" >&1
 
 echo "Latest release version: $VERSION_RELEASE" >&1
+
 if [ -e $RELEASE_JAR ]
 then
   echo "Latest release already downloaded" >&1
@@ -32,6 +33,7 @@ else
   if [ $RELEASE_NEWJAR_SHA1 = $RELEASE_SHA1 ]
   then
     echo "Hashes match" >&1
+    echo $VERSION_RELEASE > /opt/minecraft/java/release
   else
     echo "Hashes mismatch - check jar file" >&2
   fi
@@ -58,6 +60,7 @@ else
   if [ $SNAPSHOT_NEWJAR_SHA1 = $SNAPSHOT_SHA1 ]
   then
     echo "Hashes match" >&1
+    ehco $VERSION_SNAPSHOT > /opt/minecraft/java/snapshot
   else
     echo "Hashes mismatch - check jar file" >&2
   fi
