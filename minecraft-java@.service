@@ -1,0 +1,19 @@
+[Unit]
+Description=Minecraft server: %i
+After=local-fs.target network.target
+
+[Service]
+WorkingDirectory=/opt/minecraft/java/%i
+User=minecraft
+Group=minecraft
+Environment="MCJMEM=-Xmx4G -Xms4G"
+Type=forking
+Nice=-5
+
+ExecStart=/usr/bin/screen -h 1024 -dmS minecraft-java-%i /usr/bin/java $MCJMEM -jar server.jar nogui
+
+ExecStop=/usr/bin/screen -p 0 -S minecraft-java-%i -X eval 'stuff \"stop\"\015'
+ExecStop=/bin/bash -c "while ps -p $MAINPID > /dev/null; do /bin/sleep 1; done"
+
+[Install]
+WantedBy=multi-user.target
