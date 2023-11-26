@@ -1,0 +1,18 @@
+[Unit]
+Description=Minecraft bedrock server: %i
+After=local-fs.target network.target
+
+[Service]
+WorkingDirectory=/opt/minecraft/bedrock/%i
+User=minecraft
+Group=minecraft
+Type=forking
+Environment=LD_LIBRARY_PATH=/opt/minecraft/bedrock/%i
+
+ExecStart=/usr/bin/screen -h 1024 -dmS minecraft-bedrock-%i /opt/minecraft/bedrock/%i/bedrock_server
+
+ExecStop=/usr/bin/screen -p 0 -S minecraft-bedrock-%i -X eval 'stuff \"stop\"\015'
+ExecStop=/bin/bash -c "while ps -p $MAINPID > /dev/null; do /bin/sleep 1; done"
+
+[Install]
+WantedBy=multi-user.target
