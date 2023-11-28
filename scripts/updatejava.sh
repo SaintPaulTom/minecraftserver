@@ -60,7 +60,7 @@ else
   if [ $SNAPSHOT_NEWJAR_SHA1 = $SNAPSHOT_SHA1 ]
   then
     echo "Hashes match" >&1
-    ehco $VERSION_SNAPSHOT > /opt/minecraft/java/snapshot.version
+    echo $VERSION_SNAPSHOT > /opt/minecraft/java/snapshot.version
   else
     echo "Hashes mismatch - check jar file" >&2
   fi
