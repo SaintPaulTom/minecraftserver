@@ -5,7 +5,7 @@ ZIP_PATH=/opt/minecraft/bedrock/zips
 # webpage to download bedrock server zip files
 BEDROCK_DOWNLOAD_URL=https://minecraft.net/en-us/download/server/bedrock/
 # gets the webpage and stores the contents as a variable
-echo "Downloading Bedrock Derver page" >&1
+echo "Downloading Bedrock Server page" >&1
 BEDROCK_DOWNLOAD_URL_DATA=$(curl -H "Accept-Encoding: identity" -H "Accept-Language: en" -s -L -A "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; BEDROCK-UPDATER)" https://minecraft.net/en-us/download/server/bedrock/)
 # parses webpage to get download link for the latest release zip file
 RELEASE_URL=$(echo $BEDROCK_DOWNLOAD_URL_DATA | grep -o 'https://minecraft.azureedge.net/bin-linux/[^"]*')
