@@ -33,7 +33,7 @@ else
   if [ $RELEASE_NEWJAR_SHA1 = $RELEASE_SHA1 ]
   then
     echo "Hashes match" >&1
-    echo $VERSION_RELEASE > /opt/minecraft/java/release
+    echo $VERSION_RELEASE > /opt/minecraft/java/release.version
   else
     echo "Hashes mismatch - check jar file" >&2
   fi
@@ -60,7 +60,7 @@ else
   if [ $SNAPSHOT_NEWJAR_SHA1 = $SNAPSHOT_SHA1 ]
   then
     echo "Hashes match" >&1
-    ehco $VERSION_SNAPSHOT > /opt/minecraft/java/snapshot
+    ehco $VERSION_SNAPSHOT > /opt/minecraft/java/snapshot.version
   else
     echo "Hashes mismatch - check jar file" >&2
   fi
