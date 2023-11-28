@@ -9,11 +9,11 @@ echo "Downloading Bedrock Server page" >&1
 BEDROCK_DOWNLOAD_URL_DATA=$(curl -H "Accept-Encoding: identity" -H "Accept-Language: en" -s -L -A "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; BEDROCK-UPDATER)" https://minecraft.net/en-us/download/server/bedrock/)
 # parses webpage to get download link for the latest release zip file
 RELEASE_URL=$(echo $BEDROCK_DOWNLOAD_URL_DATA | grep -o 'https://minecraft.azureedge.net/bin-linux/[^"]*')
+echo "Done" >&1
 
 # combines path and filename of the above url
 RELEASE_FILE=$ZIP_PATH/${RELEASE_URL##*/}
 # checks to see if the zip file already exists
-echo "Done" >&1
 if [ -e $RELEASE_FILE ]
 then
 # tells the user the file has already been downloaded
