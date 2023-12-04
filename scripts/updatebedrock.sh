@@ -4,10 +4,13 @@ ZIP_PATH=/opt/minecraft/bedrock/zips
 BEDROCK_DOWNLOAD_URL=https://minecraft.net/en-us/download/server/bedrock/
 echo "Downloading Bedrock Server page" >&1
 BEDROCK_DOWNLOAD_URL_DATA=$(curl -H "Accept-Encoding: identity" -H "Accept-Language: en" -s -L -A "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; BEDROCK-UPDATER)" https://minecraft.net/en-us/download/server/bedrock/)
-RELEASE_URL=$(echo $BEDROCK_DOWNLOAD_URL_DATA | grep -o 'https://minecraft.azureedge.net/bin-linux/[^"]*')
 echo "Done" >&1
 
+
+RELEASE_URL=$(echo $BEDROCK_DOWNLOAD_URL_DATA | grep -o 'https://minecraft.azureedge.net/bin-linux/[^"]*')
 RELEASE_FILE=$ZIP_PATH/${RELEASE_URL##*/}
+RELEASE_VERSION=awk -F'bedrock-server-|.zip' '{print $2}' <<< "$RELEASE_FILE"
+echo "Latest Release: " $RELEASE_VERSION
 if [ -e $RELEASE_FILE ]
 then
   echo "Latest release already downloaded" >&1
