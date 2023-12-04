@@ -9,7 +9,7 @@ echo "Done" >&1
 
 RELEASE_URL=$(echo $BEDROCK_DOWNLOAD_URL_DATA | grep -o 'https://minecraft.azureedge.net/bin-linux/[^"]*')
 RELEASE_FILE=$ZIP_PATH/${RELEASE_URL##*/}
-RELEASE_VERSION=$(awk -F'bedrock-server-|.zip' '{print $2}' <<< "$RELEASE_FILE")
+RELEASE_VERSION=$(awk -F'bedrock-server-|.zip' '{print $2}'  "$RELEASE_FILE")
 echo "Latest Release: " $RELEASE_VERSION
 if [ -e $RELEASE_FILE ]
 then
