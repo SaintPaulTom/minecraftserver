@@ -9,11 +9,9 @@ echo "Done" >&1
 
 RELEASE_URL=$(echo $BEDROCK_DOWNLOAD_URL_DATA | grep -o 'https://minecraft.azureedge.net/bin-linux/[^"]*')
 RELEASE_FILE=$ZIP_PATH/${RELEASE_URL##*/}
-# RELEASE_VERSION=$(echo $RELEASE_FILE | awk -F'bedrock-server-\|.zip' '{print $2}')
-# echo "Latest Release: " $(awk -F'bedrock-server-\|.zip' '{print $2}')
 RELEASE_VERSION=${RELEASE_FILE##*r-}
 RELEASE_VERSION=${RELEASE_VERSION%%.zip}
-echo $RELEASE_VERSION
+echo "Latest release version: "$RELEASE_VERSION
 if [ -e $RELEASE_FILE ]
 then
   echo "Latest release already downloaded" >&1
@@ -26,6 +24,9 @@ fi
 
 PREVIEW_URL=$(echo $BEDROCK_DOWNLOAD_URL_DATA | grep -o 'https://minecraft.azureedge.net/bin-linux-preview/[^"]*')
 PREVIEW_FILE=$ZIP_PATH/${PREVIEW_URL##*/}
+PREVIEW_VERSION=${PREVIEW_FILE##*r-}
+PREVIEW_VERSION=${PREVIEW_VERSION%%.zip}
+echo "Latest preview version: "$PREVIEW_VERSION
 if [ -e $PREVIEW_FILE ]
 then
   echo "Latest preview already downloaded" >&1
