@@ -6,8 +6,13 @@ After=local-fs.target network.target
 WorkingDirectory=/opt/minecraft/bedrock/%i
 User=minecraft
 Group=minecraft
-Type=forking
+ProtectSystem=full
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
 Environment=LD_LIBRARY_PATH=/opt/minecraft/bedrock/%i
+Type=forking
+Nice=-5
 
 ExecStart=/usr/bin/screen -h 1024 -dmS minecraft-bedrock-%i /opt/minecraft/bedrock/%i/bedrock_server
 
