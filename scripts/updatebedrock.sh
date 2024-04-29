@@ -17,7 +17,7 @@ then
   echo "Latest release already downloaded" >&1
 else
   echo "Downloading release zip" >&1
-  curl -L -f -o $RELEASE_FILE $RELEASE_URL
+  curl -R -L -f -o $RELEASE_FILE $RELEASE_URL
   echo "Done" >&1
   echo ${RELEASE_URL##*/} > /opt/minecraft/bedrock/release.version
 fi
@@ -32,7 +32,7 @@ then
   echo "Latest preview already downloaded" >&1
 else
   echo "Downloading preview release" >&1
-  curl -L -f -o $PREVIEW_FILE $PREVIEW_URL
+  curl -R -L -f -o $PREVIEW_FILE $PREVIEW_URL
   echo "Done" >&1
   echo ${PREVIEW_URL##*/} > /opt/minecraft/bedrock/preview.version
 fi
