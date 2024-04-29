@@ -26,7 +26,7 @@ else
   RELEASE_NEWJAR_SHA1=$(jq -rn --argjson sha1 "$RELEASE_MANIFEST_DATA" '$sha1.downloads.server.sha1')
   echo "Done" >&1
   echo "Downloading release jar" >&1
-  curl -L -f -o $RELEASE_JAR $RELEASE_NEWJAR_URL
+  curl -R -L -f -o $RELEASE_JAR $RELEASE_NEWJAR_URL
   echo "Done" >&1
   echo "Calculating SHA1 sum" >&1
   RELEASE_SHA1=$(sha1sum $RELEASE_JAR | cut -d " " -f 1 )
@@ -53,7 +53,7 @@ else
   SNAPSHOT_NEWJAR_SHA1=$(jq -rn --argjson sha1 "$SNAPSHOT_MANIFEST_DATA" '$sha1.downloads.server.sha1')
   echo "Done" >&1
   echo "Downloading snapshot jar" >&1
-  curl -L -f -o $SNAPSHOT_JAR $SNAPSHOT_NEWJAR_URL
+  curl -R -L -f -o $SNAPSHOT_JAR $SNAPSHOT_NEWJAR_URL
   echo "Done" >&1
   echo "Calculating SHA1 sum" >&1
   SNAPSHOT_SHA1=$(sha1sum $SNAPSHOT_JAR | cut -d " " -f 1 )
