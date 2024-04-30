@@ -19,7 +19,7 @@ echo "Done" >&1
 
 # Check and download the latest release version
 echo "Latest release version: $VERSION_RELEASE" >&1
-if [ -e $RELEASE_JAR ] then
+if [ -e $RELEASE_JAR ]; then
 	echo "Latest release already downloaded" >&1
 else
 	# Download and parse the release manifest and download the JAR file
@@ -37,7 +37,7 @@ else
  	# Verify the SHA1 sum
 	echo "Calculating SHA1 sum" >&1
 	RELEASE_SHA1=$(sha1sum $RELEASE_JAR | cut -d " " -f 1 )
-	if [ $RELEASE_NEWJAR_SHA1 = $RELEASE_SHA1 ] then
+	if [ $RELEASE_NEWJAR_SHA1 = $RELEASE_SHA1 ]; then
 		echo "Hashes match" >&1
 		echo $VERSION_RELEASE > /opt/minecraft/java/release.version
 	else
@@ -47,7 +47,7 @@ fi
 
 # Check and download the latest snapshot version
 echo "Latest snapshot version: $VERSION_SNAPSHOT" >&1
-if [ -e $SNAPSHOT_JAR ] then
+if [ -e $SNAPSHOT_JAR ]; then
 	echo "Latest snapshot already downloaded" >&1
 else
 	# Download and parse the snapshot manifest and download the JAR file
@@ -65,7 +65,7 @@ else
  	# Verify the SHA1 sum
 	echo "Calculating SHA1 sum" >&1
 	SNAPSHOT_SHA1=$(sha1sum $SNAPSHOT_JAR | cut -d " " -f 1 )
-	if [ $SNAPSHOT_NEWJAR_SHA1 = $SNAPSHOT_SHA1 ] then
+	if [ $SNAPSHOT_NEWJAR_SHA1 = $SNAPSHOT_SHA1 ]; then
 		echo "Hashes match" >&1
 		echo $VERSION_SNAPSHOT > /opt/minecraft/java/snapshot.version
 	else
@@ -74,6 +74,6 @@ else
 fi
 
 # Update snapshot version if same as release
-if [ $VERSION_RELEASE = $VERSION_SNAPSHOT ] then
+if [ $VERSION_RELEASE = $VERSION_SNAPSHOT ]; then
 	echo $VERSION_RELEASE > /opt/minecraft/java/snapshot.version
 fi
