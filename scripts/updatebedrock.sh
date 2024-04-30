@@ -15,8 +15,7 @@ RELEASE_FILE=$ZIP_PATH/${RELEASE_URL##*/}
 RELEASE_VERSION=${RELEASE_FILE##*r-}
 RELEASE_VERSION=${RELEASE_VERSION%%.zip}
 echo "Latest release version: "$RELEASE_VERSION
-if [ -e $RELEASE_FILE ]
-then
+if [ -e $RELEASE_FILE ]; then
 	echo "Latest release already downloaded" >&1
 else
 	echo "Downloading release zip" >&1
@@ -31,8 +30,7 @@ PREVIEW_FILE=$ZIP_PATH/${PREVIEW_URL##*/}
 PREVIEW_VERSION=${PREVIEW_FILE##*r-}
 PREVIEW_VERSION=${PREVIEW_VERSION%%.zip}
 echo "Latest preview version: "$PREVIEW_VERSION
-if [ -e $PREVIEW_FILE ]
-then
+if [ -e $PREVIEW_FILE ]; then
 	echo "Latest preview already downloaded" >&1
 else
 	echo "Downloading preview release" >&1
@@ -42,6 +40,6 @@ else
 fi
 
 # Check if preview is the same as release
-if [ $PREVIEW_VERSION = $SNAPSHOT_VERSION ] then
+if [ $PREVIEW_VERSION = $SNAPSHOT_VERSION ]; then
 	echo ${RELEASE_URL##*/} > /opt/minecraft/bedrock/preview.version
 fi
