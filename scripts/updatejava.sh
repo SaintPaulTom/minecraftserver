@@ -67,13 +67,14 @@ else
 	SNAPSHOT_SHA1=$(sha1sum $SNAPSHOT_JAR | cut -d " " -f 1 )
 	if [ $SNAPSHOT_NEWJAR_SHA1 = $SNAPSHOT_SHA1 ]; then
 		echo "Hashes match" >&1
-		echo $VERSION_SNAPSHOT > /opt/minecraft/java/snapshot.version
+		# Update snapshot version if same as release
+  		echo $VERSION_SNAPSHOT > /opt/minecraft/java/snapshot.version
+		if [ $VERSION_RELEASE = $VERSION_SNAPSHOT ]; then
+			echo $VERSION_RELEASE > /opt/minecraft/java/snapshot.version
+		fi
 	else
 		echo "Hashes mismatch - check jar file" >&2
 	fi
 fi
 
-# Update snapshot version if same as release
-if [ $VERSION_RELEASE = $VERSION_SNAPSHOT ]; then
-	echo $VERSION_RELEASE > /opt/minecraft/java/snapshot.version
-fi
+
