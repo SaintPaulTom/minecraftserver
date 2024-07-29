@@ -37,9 +37,8 @@ else
 	curl -R -L -f -o $PREVIEW_FILE $PREVIEW_URL
 	echo "Done" >&1
 	echo ${PREVIEW_URL##*/} > /opt/minecraft/bedrock/preview.version
-fi
-
-# Check if preview is the same as release
-if [ $PREVIEW_VERSION = $SNAPSHOT_VERSION ]; then
-	echo ${RELEASE_URL##*/} > /opt/minecraft/bedrock/preview.version
+	# Check if preview is the same as release
+	if [ $PREVIEW_VERSION = $SNAPSHOT_VERSION ]; then
+		echo ${RELEASE_URL##*/} > /opt/minecraft/bedrock/preview.version
+	fi
 fi
