@@ -4,6 +4,11 @@
 ZIP_PATH=/opt/minecraft/bedrock/zips
 BEDROCK_DOWNLOAD_URL=https://minecraft.net/en-us/download/server/bedrock/
 
+# Check if the directory exists, create if not
+if [ -e /opt/minecraft/bedrock/zips ]; then
+	mkdir -p /opt/minecraft/bedrock/zips
+fi
+
 # Download the Bedrock Server page
 echo "Downloading Bedrock Server page from: $BEDROCK_DOWNLOAD_URL" >&1
 BEDROCK_DOWNLOAD_URL_DATA=$(curl -H "Accept-Encoding: identity" -H "Accept-Language: en" -s -L -A "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; BEDROCK-UPDATER)" https://minecraft.net/en-us/download/server/bedrock/)
