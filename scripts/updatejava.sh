@@ -4,6 +4,11 @@
 VERSION_MANIFEST='https://piston-meta.mojang.com/mc/game/version_manifest.json'
 JAR_PATH=/opt/minecraft/java/jars
 
+# Check if the directory exists, create if not
+if [ -e /opt/minecraft/java/jars ]; then
+	mkdir -p /opt/minecraft/java/jars
+fi
+
 #d Download the version manifest
 echo "Downloading Version Manifest from: $VERSION_MANIFEST" >&1
 VERSION_MANIFEST_DATA=$(curl -s "$VERSION_MANIFEST")
