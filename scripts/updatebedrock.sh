@@ -4,8 +4,7 @@
 ZIP_PATH=/opt/minecraft/bedrock/zips
 BEDROCK_DOWNLOAD_URL=https://minecraft.net/en-us/download/server/bedrock/
 
-# Check if the directory exists, create if not
-if [ -e /opt/minecraft/bedrock/zips ]; then
+if ! [ -e /opt/minecraft/bedrock/zips ]; then
 	mkdir -p /opt/minecraft/bedrock/zips
 fi
 
