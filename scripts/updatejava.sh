@@ -4,8 +4,8 @@
 VERSION_MANIFEST='https://piston-meta.mojang.com/mc/game/version_manifest.json'
 JAR_PATH=/opt/minecraft/java/jars
 
-# Check if the directory exists, create if not
-if [ -e /opt/minecraft/java/jars ]; then
+# Check if the jars directory dosen't exist, create it
+if ! [ -e /opt/minecraft/java/jars ]; then
 	mkdir -p /opt/minecraft/java/jars
 fi
 
