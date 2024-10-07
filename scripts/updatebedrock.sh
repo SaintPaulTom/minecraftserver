@@ -38,7 +38,7 @@ else
         echo "Done" >&1
         echo ${PREVIEW_URL##*/} > /opt/minecraft/bedrock/preview.version
         # Check if preview is the same as release
-        if [ $PREVIEW_VERSION = $PREVIEW_VERSION ]; then
+        if [ $PREVIEW_VERSION = $RELEASE_VERSION ]; then
                 echo ${RELEASE_URL##*/} > /opt/minecraft/bedrock/preview.version
         fi
 fi
