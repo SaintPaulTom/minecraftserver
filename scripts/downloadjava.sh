@@ -54,6 +54,13 @@ fi
 echo "Latest snapshot version: $VERSION_SNAPSHOT" >&1
 if [ -e $SNAPSHOT_JAR ]; then
 	echo "Latest snapshot already downloaded" >&1
+	# Update snapshot.version if needed
+  	if cmp --silent -- /opt/minecraft/java/release.version /opt/minecraft/java/snapshot.version; then
+  		echo "snapshot.version already updataed" >&1
+    	else
+     		echo $VERSION_RELEASE > /opt/minecraft/java/snapshot.version
+       		echo "snapshot.version updated" >&1
+	fi
 else
 	# Download and parse the snapshot manifest and download the JAR file
 	SNAPSHOT_MANIFEST=$(echo $VERSION_MANIFEST_DATA | jq -r --arg VERSION_TARGET $VERSION_SNAPSHOT '.versions | .[] | select(.id==$VERSION_TARGET) | .url')
@@ -73,10 +80,6 @@ else
 	if [ $SNAPSHOT_NEWJAR_SHA1 = $SNAPSHOT_SHA1 ]; then
 		echo "Hashes match" >&1
 		# Update snapshot version if same as release
-  		echo $VERSION_SNAPSHOT > /opt/minecraft/java/snapshot.version
-		if [ $VERSION_RELEASE = $VERSION_SNAPSHOT ]; then
-			echo $VERSION_RELEASE > /opt/minecraft/java/snapshot.version
-		fi
 	else
 		echo "Hashes mismatch - check jar file" >&2
 	fi
